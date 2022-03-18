@@ -19,10 +19,20 @@ do
     members.AddRange(result.Items.Select(i => i.Value));
 
     skipTotal += take;
+
+    Console.WriteLine($"Loaded {members.Count} out of {totalResultsCount}");
+
     
 }
+
 while (members.Count < totalResultsCount);
 
+Console.WriteLine("Loaded all members sucessfully.");
+
+foreach (var member in members)
+{
+    Console.WriteLine(member.NameAddressAs); // The console prints out blank lines with the names. Try to debug this issue
+}
 
 
 
