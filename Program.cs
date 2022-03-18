@@ -13,14 +13,18 @@ var client = new RestClient("https://members-api.parliament.uk");
 do
 {
     var requestURL = $"api/Members/Search?IsCurrentMember=true&skip={skipTotal}&take={take}&House=1";
-    var Result = await client.GetAsync<MembersAPIResult>(new RestRequest()); // Set the Path to the url
+    var result = await client.GetAsync<MembersAPIResult>(new RestRequest(requestURL)); // Set the Path to the url
+    totalResultsCount = result.TotalResults;
+
+    members.AddRange(result.Items.Select(i => i.Value));
+
+    skipTotal += take;
+    
 }
 while (members.Count < totalResultsCount);
 
 
 
-
-var count = Result.Items.Count;
 
 // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 public class LatestParty
