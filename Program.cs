@@ -31,7 +31,15 @@ Console.WriteLine("Loaded all members sucessfully.");
 
 foreach (var member in members)
 {
-    Console.WriteLine(member.NameAddressAs); // The console prints out blank lines with the names. Try to debug this issue
+    if (member.NameAddressAs == null)
+    {
+        Console.WriteLine(member.NameDisplayAs);
+    }
+    else 
+    {
+        Console.WriteLine(member.NameAddressAs); // The console prints out blank lines with the names. Try to debug this issue
+    }
+        
 }
 
 
